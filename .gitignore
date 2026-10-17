@@ -1,17 +1,7 @@
-# Dependencies
-node_modules/
+# Python virtual environment
+venv/
 
-# Build output
-dist/
-build/
-
-# Environment variables and secrets
+__pycache__/
+*.py[cod]
 .env
-.env.*
 
-# Logs
-*.log
-
-# IDE settings
-.vscode/
-.idea/
