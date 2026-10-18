@@ -1,0 +1,22 @@
+name: QA Merge Confirmation
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - SCRUM-2-QA
+
+jobs:
+  confirm-merge:
+    # This 'if' statement is the magic. It ensures it ONLY runs if the PR was actually merged (not just closed/rejected)
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Print Confirmation
+        run: |
+          echo "✅ SUCCESS: Code successfully merged into QA Environment!"
+          echo "PR Number: #${{ github.event.pull_request.number }}"
+          echo "PR Title: ${{ github.event.pull_request.title }}"
+          echo "Merged by: ${{ github.event.pull_request.merged_by.login }}"
+          echo "Commit Hash: ${{ github.sha }}"
