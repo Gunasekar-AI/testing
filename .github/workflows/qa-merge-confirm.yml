@@ -5,7 +5,7 @@ on:
     types: [closed]
     branches:
       - SCRUM-2-QA
-
+#testing cmd
 jobs:
   confirm-merge:
     # This 'if' statement is the magic. It ensures it ONLY runs if the PR was actually merged (not just closed/rejected)
