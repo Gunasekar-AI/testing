@@ -1,4 +1,4 @@
-name: QA Merge Confirmation
+name: QA Merge and Deploy
 
 on:
   pull_request:
@@ -7,16 +7,41 @@ on:
       - SCRUM-2-QA
 
 jobs:
-  confirm-merge:
-    # This 'if' statement is the magic. It ensures it ONLY runs if the PR was actually merged (not just closed/rejected)
+  deploy-to-qa:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    # THIS IS THE MAGIC LINE FOR JIRA DEPLOYMENTS:
+    environment: 
+      name: QA
+      url: https://your-qa-server-url.com 
     
     steps:
-      - name: Print Confirmation
+      - name: Simulate Deployment
         run: |
-          echo "✅ SUCCESS: Code successfully merged into QA Environment!"
-          echo "PR Number: #${{ github.event.pull_request.number }}"
-          echo "PR Title: ${{ github.event.pull_request.title }}"
-          echo "Merged by: ${{ github.event.pull_request.merged_by.login }}"
-          echo "Commit Hash: ${{ github.sha }}"
+          echo "Deploying code to QA server..."
+          # If you had actual deployment scripts (like AWS, Azure, or Ansible), they would go here.
+          sleep 5 
+          echo "✅ Deployment Successful!"
+
+# name: QA Merge Confirmation
+
+# on:
+#   pull_request:
+#     types: [closed]
+#     branches:
+#       - SCRUM-2-QA
+# #testing cmd
+# jobs:
+#   confirm-merge:
+#     # This 'if' statement is the magic. It ensures it ONLY runs if the PR was actually merged (not just closed/rejected)
+#     if: github.event.pull_request.merged == true
+#     runs-on: ubuntu-latest
+    
+#     steps:
+#       - name: Print Confirmation
+#         run: |
+#           echo "✅ SUCCESS: Code successfully merged into QA Environment!"
+#           echo "PR Number: #${{ github.event.pull_request.number }}"
+#           echo "PR Title: ${{ github.event.pull_request.title }}"
+#           echo "Merged by: ${{ github.event.pull_request.merged_by.login }}"
+#           echo "Commit Hash: ${{ github.sha }}"

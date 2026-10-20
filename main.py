@@ -2,7 +2,7 @@ import os
 import requests
 from requests.auth import HTTPBasicAuth
 
-#Test for QA Merge scrum-2-dev.
+# Test for QA Merge scrum-2-dev.
 
 JIRA_URL = os.environ["JIRA_URL"].rstrip("/")
 EMAIL = os.environ["JIRA_EMAIL"]
